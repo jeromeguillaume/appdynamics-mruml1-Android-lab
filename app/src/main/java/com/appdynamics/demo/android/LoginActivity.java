@@ -25,6 +25,7 @@ import com.appdynamics.demo.android.misc.Constants;
 import com.appdynamics.demo.android.misc.GlobalDataProvider;
 import com.appdynamics.demo.android.misc.UserLoginTask;
 import com.appdynamics.demo.android.misc.UserPrefActivity;
+import com.appdynamics.eumagent.runtime.Instrumentation;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -230,6 +231,8 @@ public class LoginActivity extends Activity implements AsyncTaskListener {
 	public void onPostExecute(boolean success, boolean error,
 			String exceptionMessage) {
 		mAuthTask = null;
+		Instrumentation.setUserData("User ID", mUser);
+
 		showProgress(false);
 		if (success) {
 			//Save the username/password in settings
